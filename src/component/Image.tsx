@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export interface ImageProps {
     src: string;
@@ -6,6 +6,8 @@ export interface ImageProps {
 
 export const Image = ({ src }: ImageProps) => {
     return (
-        <img src={src} />
+        <div className="wrapper">
+            <img src={src} />
+        </div>
     )
 }
