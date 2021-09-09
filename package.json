@@ -10,7 +10,9 @@
     "license": "MIT",
     "scripts": {
         "build": "rimraf dist; rollup -c",
-        "test": "jest"
+        "build:watch": "rimraf dist; rollup -c -w",
+        "test": "jest",
+        "test:watch": "jest --watch"
     },
     "devDependencies": {
         "@testing-library/react": "^12.0.0",
@@ -35,7 +37,7 @@
         "transform": {
             ".(ts|tsx)": "ts-jest"
         },
-        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+        "testRegex": "\\.test\\.(tsx|ts)$",
         "moduleFileExtensions": [
             "ts",
             "tsx",
