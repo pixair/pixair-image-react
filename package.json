@@ -1,0 +1,47 @@
+{
+    "name": "pixair-image-react",
+    "version": "1.0.0",
+    "description": "This project helps you to use the Pixair API in React components",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "repository": "git@github.com:pixair/pixair-image-react.git",
+    "author": "dev@pixair.io",
+    "license": "MIT",
+    "scripts": {
+        "build": "rimraf dist; rollup -c",
+        "build:watch": "rimraf dist; rollup -c -w",
+        "test": "jest",
+        "test:watch": "jest --watch"
+    },
+    "devDependencies": {
+        "@testing-library/react": "^12.0.0",
+        "@types/jest": "^27.0.1",
+        "@types/react": "^17.0.20",
+        "jest": "^27.1.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "rimraf": "^3.0.2",
+        "rollup": "^2.56.3",
+        "rollup-plugin-typescript2": "^0.30.0",
+        "ts-jest": "^27.0.5",
+        "tslib": "^2.3.1",
+        "typescript": "^4.4.2"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2"
+    },
+    "jest": {
+        "testEnvironment": "jsdom",
+        "transform": {
+            ".(ts|tsx)": "ts-jest"
+        },
+        "testRegex": "\\.test\\.(tsx|ts)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ]
+    }
+}
