@@ -1,7 +1,7 @@
 import React, { useContext, createContext, useMemo } from "react";
 
 export interface ConfigurationProviderProps {
-    children?: React.ReactChild;
+    children?: any;
     host: string;
 };
 
@@ -11,7 +11,9 @@ export const ConfigurationContext = createContext({
 
 export default function ConfigurationProvider(props: ConfigurationProviderProps) {
     const configuration = useContext(ConfigurationContext);
-    const configurationContext = useMemo(() => ({ ...props, ...configuration }), [
+    const configurationContext = useMemo(() => {
+        return { ...configuration, ...props };
+    }, [
         props,
         configuration,
     ]);

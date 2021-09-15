@@ -9,7 +9,6 @@ describe('The image component', () => {
         // WHEN
         const { container } = render(<Image src='/path/to/image.png' />);
 
-
         // THEN
         const node = container.querySelector('img');
         expect(node?.getAttribute('src')).toEqual('https://api.pixair.io/path/to/image.png');
