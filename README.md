@@ -1,5 +1,7 @@
 # Pixair Image React Library
 
+![tests status](https://github.com/pixair/pixair-image/actions/workflows/tests.yml/badge.svg)
+
 This project provide you React components that helps you to use the Pixair API.
 
 ## Installation
