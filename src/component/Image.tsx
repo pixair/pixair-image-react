@@ -7,7 +7,9 @@ export interface ImageProps {
 
 export const Image = ({ src }: ImageProps) => {
     const configuration = useContext(ConfigurationContext);
-    const newSrc = configuration.host + src;
+    const newSrc = (src[0] === '/')
+        ? configuration.host + src
+        : configuration.host + '/' + src;
     return (
         <div className="wrapper">
             <img src={newSrc} />

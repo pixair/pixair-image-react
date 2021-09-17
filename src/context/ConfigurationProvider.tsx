@@ -10,9 +10,13 @@ export const ConfigurationContext = createContext({
 });
 
 export default function ConfigurationProvider(props: ConfigurationProviderProps) {
+    const newConfiguration = {
+        host: props.host ? props.host.replace(/\/$/, '') : '',
+    }
+
     const configuration = useContext(ConfigurationContext);
     const configurationContext = useMemo(() => {
-        return { ...configuration, ...props };
+        return { ...configuration, ...newConfiguration };
     }, [
         props,
         configuration,
