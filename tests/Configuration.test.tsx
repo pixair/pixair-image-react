@@ -5,6 +5,18 @@ import ConfigurationProvider from '../src/context/ConfigurationProvider';
 
 describe('The configuration provider', () => {
     
+    it('Should perform nothing with no images', () => {
+
+        // WHEN
+        const { container } = render(
+            <ConfigurationProvider host="https://host"></ConfigurationProvider>
+        );
+
+        // THEN
+        const node = container.querySelector('img');
+        expect(node).toBeNull();
+    });
+    
     it('Should be able provide host value for an Image components', () => {
 
         // WHEN

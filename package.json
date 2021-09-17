@@ -12,6 +12,7 @@
         "build": "rimraf dist; rollup -c",
         "build:watch": "rimraf dist; rollup -c -w",
         "test": "jest",
+        "test:coverage": "jest --coverage=true",
         "test:watch": "jest --watch"
     },
     "devDependencies": {
