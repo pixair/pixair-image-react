@@ -9,69 +9,38 @@ describe('The configuration provider', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider host="https://host"></ConfigurationProvider>
+            <ConfigurationProvider api="https://host" quality={75}></ConfigurationProvider>
         );
 
         // THEN
-        const node = container.querySelector('img');
-        expect(node).toBeNull();
+        expect(container.querySelector('img')).toBeNull();
     });
     
-    it('Should be able provide host value for an Image components', () => {
+    it('Should be able provide an api url value for all children components', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider host="https://host-from-provider">
-                <Image src='/path/to/image.png' />
+            <ConfigurationProvider api="https://my-api/images" quality={75}>
+                <Image src='/path/to/image.png' width={50} height={50} />
             </ConfigurationProvider>
         );
 
         // THEN
-        const node = container.querySelector('img');
-        expect(node?.getAttribute('src')).toEqual('https://host-from-provider/path/to/image.png');
-    });
-    
-    it('Should not add a double slash', () => {
-
-        // WHEN
-        const { container } = render(
-            <ConfigurationProvider host="https://domain-with-slash/">
-                <Image src='/path/with/slash.png' />
-            </ConfigurationProvider>
-        );
-
-        // THEN
-        const node = container.querySelector('img');
-        expect(node?.getAttribute('src')).toEqual('https://domain-with-slash/path/with/slash.png');
-    });
-    
-    it('Should add a slash when no slash', () => {
-
-        // WHEN
-        const { container } = render(
-            <ConfigurationProvider host="https://domain-without-slash">
-                <Image src='path/without/slash.png' />
-            </ConfigurationProvider>
-        );
-
-        // THEN
-        const node = container.querySelector('img');
-        expect(node?.getAttribute('src')).toEqual('https://domain-without-slash/path/without/slash.png');
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://my-api/images?url=/path/to/image.png&w=50&q=75');
     });
     
     it('Should be able override a previous configuration provider', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider host="https://first-host">
-                <ConfigurationProvider host="https://second-host">
-                    <Image src='path/to/image.png' />
+            <ConfigurationProvider api="https://first-host" quality={75}>
+                <ConfigurationProvider api="https://second-host" quality={75}>
+                    <Image src='/path/to/image.png' width={50} height={50} />
                 </ConfigurationProvider>
             </ConfigurationProvider>
         );
 
         // THEN
-        const node = container.querySelector('img');
-        expect(node?.getAttribute('src')).toEqual('https://second-host/path/to/image.png');
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://second-host?url=/path/to/image.png&w=50&q=75');
     });
 });

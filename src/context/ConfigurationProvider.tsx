@@ -2,29 +2,35 @@ import React, { useContext, createContext, useMemo } from "react";
 
 export interface ConfigurationProviderProps {
     children?: any;
-    host: string;
+
+    /**
+     * The Pixair api url.
+     */
+    api: string;
+
+    /**
+     * The requested quality of images.
+     */
+    quality: number;
 };
 
 export const ConfigurationContext = createContext({
-    host: 'https://api.pixair.io'
+    api: '/images',
+    quality: 75,
 });
 
-export default function ConfigurationProvider(props: ConfigurationProviderProps) {
-    const newConfiguration = {
-        host: props.host ? props.host.replace(/\/$/, '') : '',
-    }
-
+export default function ConfigurationProvider({children, ...props}: ConfigurationProviderProps) {
     const configuration = useContext(ConfigurationContext);
     const configurationContext = useMemo(() => {
-        return { ...configuration, ...newConfiguration };
+        return { ...configuration, ...props };
     }, [
         props,
         configuration,
     ]);
 
-    if (!props.children) {
+    if (!children) {
         return null;
     }
 
-    return <ConfigurationContext.Provider value={configurationContext}>{props.children}</ConfigurationContext.Provider>;
+    return <ConfigurationContext.Provider value={configurationContext}>{children}</ConfigurationContext.Provider>;
 }
