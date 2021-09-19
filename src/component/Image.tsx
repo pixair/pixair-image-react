@@ -4,7 +4,7 @@ import { ConfigurationContext } from '../context/ConfigurationProvider';
 export interface ImageProps {
 
     /**
-     * Image source. Could be an absolute or a relative path.
+     * Image source, could be an absolute or a relative path.
      */
     src: string;
 
@@ -37,7 +37,14 @@ export interface ImageProps {
 /**
  * Image component, automatically optimize the content of the picture by using the pixair api.
  */
-export const Image = ({ src, width, height, quality, api, ...imageAttibutes }: ImageProps) => {
+export const Image = ({
+    src,
+    width,
+    height,
+    quality,
+    api,
+    ...imageAttibutes
+}: ImageProps) => {
     const configuration = useContext(ConfigurationContext);
     const apiUrl = api ?? configuration.api;
     const imageQuality = quality ?? configuration.quality;

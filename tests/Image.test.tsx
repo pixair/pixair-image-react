@@ -22,6 +22,15 @@ describe('The image component', () => {
         expect(container.querySelector('img')?.getAttribute('src')).toEqual('/images?url=../../path/to/image.png&w=50&q=75');
     });
     
+    it('Should be able to have an absolute path', () => {
+
+        // WHEN
+        const { container } = render(<Image src='http://my-domain/path/to/image.png' width={50} height={50} />);
+
+        // THEN
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual('/images?url=http://my-domain/path/to/image.png&w=50&q=75');
+    });
+    
     it('Should be able to have a alt attribute', () => {
 
         // WHEN
