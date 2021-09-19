@@ -12,6 +12,18 @@ Inside your react project, add the following dependency
 yarn add pixair-image-react
 ```
 
+Inside your root component, add the following provider:
+
+```
+import { ConfigurationProvider } from 'pixair-image-react';
+
+// ...
+
+<ConfigurationProvider api="https://vincent-api.pixair.io" quality={75}>
+    // Children components
+</ConfigurationProvider>
+```
+
 Then, in one of your component, you'll be able to use:
 
 ```
@@ -19,7 +31,7 @@ import { Image } from 'pixair-image-react';
 
 // ...
 
-<Image src="/path/to/image.png "/>
+<Image src="/path/to/image.png" width={50} height={50}/>
 ```
 
 This image will be automatically optimize by the Pixair API.

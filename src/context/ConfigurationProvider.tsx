@@ -19,7 +19,7 @@ export const ConfigurationContext = createContext({
     quality: 75,
 });
 
-export default function ConfigurationProvider({ children, ...props }: ConfigurationProviderProps) {
+export function ConfigurationProvider({ children, ...props }: ConfigurationProviderProps) {
     const configuration = useContext(ConfigurationContext);
     const configurationContext = useMemo(() => {
         return { ...configuration, ...props };

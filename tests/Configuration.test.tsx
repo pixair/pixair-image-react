@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Image } from '../src/component/Image';
-import ConfigurationProvider from '../src/context/ConfigurationProvider';
+import { ConfigurationProvider } from '../src/context/ConfigurationProvider';
 
 describe('The configuration provider', () => {
     
