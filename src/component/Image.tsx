@@ -26,7 +26,7 @@ export interface ImageProps {
     /**
      * Override the api option given by the ConfigurationProvider.
      */
-    api?: string;
+    project?: string;
 
     /**
      * Override the quality option given by the ConfigurationProvider.
@@ -42,15 +42,19 @@ export const Image = ({
     width,
     height,
     quality,
-    api,
+    project,
     ...imageAttibutes
 }: ImageProps) => {
     const configuration = useContext(ConfigurationContext);
-    const apiUrl = api ?? configuration.api;
+    const apiUrl = buildPixairEndpoint(project ?? configuration.project);
     const imageQuality = quality ?? configuration.quality;
     const imageSrc = `${apiUrl}?url=${src}&w=${width}&q=${imageQuality}`;
 
     return (
         <img src={imageSrc} {...imageAttibutes} />
     )
+}
+
+function buildPixairEndpoint(project: string): string {
+    return `https://${project}.pixair.cloud/images`;
 }

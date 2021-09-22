@@ -19,7 +19,7 @@ import { ConfigurationProvider } from 'pixair-image-react';
 
 // ...
 
-<ConfigurationProvider api="https://vincent-api.pixair.io" quality={75}>
+<ConfigurationProvider project="my-project" quality={75}>
     // Children components
 </ConfigurationProvider>
 ```
