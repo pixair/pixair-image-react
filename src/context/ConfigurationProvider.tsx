@@ -4,9 +4,9 @@ export interface ConfigurationProviderProps {
     children?: any;
 
     /**
-     * The Pixair api url.
+     * The project name used to build the Pixair endpoint.
      */
-    api: string;
+    project: string;
 
     /**
      * The requested quality of images.
@@ -15,7 +15,7 @@ export interface ConfigurationProviderProps {
 };
 
 export const ConfigurationContext = createContext({
-    api: '/images',
+    project: 'example',
     quality: 75,
 });
 

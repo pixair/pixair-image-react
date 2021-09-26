@@ -9,7 +9,7 @@ describe('The configuration provider', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider api="https://host" quality={75}></ConfigurationProvider>
+            <ConfigurationProvider project="my-project" quality={75}></ConfigurationProvider>
         );
 
         // THEN
@@ -20,27 +20,27 @@ describe('The configuration provider', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider api="https://my-api/images" quality={75}>
+            <ConfigurationProvider project="my-project" quality={75}>
                 <Image src='/path/to/image.png' width={50} height={50} />
             </ConfigurationProvider>
         );
 
         // THEN
-        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://my-api/images?url=/path/to/image.png&w=50&q=75');
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://my-project.pixair.cloud/images?url=/path/to/image.png&w=50&q=75');
     });
     
     it('Should be able override a previous configuration provider', () => {
 
         // WHEN
         const { container } = render(
-            <ConfigurationProvider api="https://first-host" quality={75}>
-                <ConfigurationProvider api="https://second-host" quality={75}>
+            <ConfigurationProvider project="my-project" quality={75}>
+                <ConfigurationProvider project="second-project" quality={75}>
                     <Image src='/path/to/image.png' width={50} height={50} />
                 </ConfigurationProvider>
             </ConfigurationProvider>
         );
 
         // THEN
-        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://second-host?url=/path/to/image.png&w=50&q=75');
+        expect(container.querySelector('img')?.getAttribute('src')).toEqual('https://second-project.pixair.cloud/images?url=/path/to/image.png&w=50&q=75');
     });
 });
