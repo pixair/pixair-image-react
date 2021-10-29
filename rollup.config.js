@@ -4,7 +4,12 @@ import pkg from './package.json';
 const input = 'src/index.ts';
 
 const plugins = [
-    typescript(),
+    typescript({
+        compilerOptions: {
+            sourceMap: true,
+            declaration: true,
+        },
+    }),
 ];
 
 const external = [

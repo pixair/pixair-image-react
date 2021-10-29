@@ -5,6 +5,7 @@
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
     "types": "dist/index.d.ts",
+    "files": ["dist"],
     "repository": "git@github.com:pixair/pixair-image-react.git",
     "author": "dev@pixair.io",
     "license": "MIT",
