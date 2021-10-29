@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ConfigurationContext } from '../context/ConfigurationProvider';
 
 export interface ImageProps {
@@ -45,6 +45,16 @@ export const Image = ({
     project,
     ...imageAttibutes
 }: ImageProps) => {
+    const [containerWidth, setContainerWidth] = useState(0)
+    const [containerHeight, setContainerHeight] = useState(0)
+
+    useEffect(() => {
+        setContainerWidth(width)
+    }, [width])
+    useEffect(() => {
+        setContainerHeight(height)
+    }, [height])
+
     const configuration = useContext(ConfigurationContext);
     const apiUrl = buildPixairEndpoint(project ?? configuration.project);
     const imageQuality = quality ?? configuration.quality;
@@ -52,7 +62,9 @@ export const Image = ({
     const imageSrc = `${apiUrl}?url=${src}&w=${imageWidth}&q=${imageQuality}`;
 
     return (
-        <img src={imageSrc} {...imageAttibutes} />
+        <div style={{ width: containerWidth, height: containerHeight }}>
+            <img src={imageSrc} {...imageAttibutes} />
+        </div>
     )
 }
 
