@@ -48,7 +48,8 @@ export const Image = ({
     const configuration = useContext(ConfigurationContext);
     const apiUrl = buildPixairEndpoint(project ?? configuration.project);
     const imageQuality = quality ?? configuration.quality;
-    const imageSrc = `${apiUrl}?url=${src}&w=${width}&q=${imageQuality}`;
+    const imageWidth = findImageWidth(width, [...configuration.imageSizes, ...configuration.deviceSizes]);
+    const imageSrc = `${apiUrl}?url=${src}&w=${imageWidth}&q=${imageQuality}`;
 
     return (
         <img src={imageSrc} {...imageAttibutes} />
@@ -57,4 +58,17 @@ export const Image = ({
 
 function buildPixairEndpoint(project: string): string {
     return `https://${project}.pixair.cloud/images`;
+}
+
+function findImageWidth(containerWidth: number, availableWidths: number[]): number {
+    if (availableWidths.length < 1) throw new Error('No available widths');
+
+    const higherToLowerWidths = availableWidths.sort((a, b) => b - a);
+    let result = availableWidths.shift() as number;
+
+    higherToLowerWidths.forEach(width => {
+        if (width >= containerWidth) result = width;
+    });
+
+    return result;
 }
