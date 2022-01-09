@@ -31,7 +31,7 @@ import { Image } from 'pixair-image-react';
 
 // ...
 
-<Image src="/path/to/image.png" width={50} height={50}/>
+<Image src="/path/to/image.png" width={50} height={50} />
 ```
 
 This image will be automatically optimize by the Pixair API.
