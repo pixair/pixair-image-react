@@ -4,37 +4,9 @@
 
 This project provide you React components that helps you to use the Pixair API.
 
-## Installation
+## Documentation
 
-Inside your react project, add the following dependency
-
-```
-yarn add pixair-image-react
-```
-
-Inside your root component, add the following provider:
-
-```
-import { ConfigurationProvider } from 'pixair-image-react';
-
-// ...
-
-<ConfigurationProvider project="my-project" quality={75}>
-    // Children components
-</ConfigurationProvider>
-```
-
-Then, in one of your component, you'll be able to use:
-
-```
-import { Image } from 'pixair-image-react';
-
-// ...
-
-<Image src="/path/to/image.png" width={50} height={50} />
-```
-
-This image will be automatically optimize by the Pixair API.
+The documentation of this project is available online on the [Pixair web site](https://www.pixair.io/documentation)
 
 ## Contribute
 
